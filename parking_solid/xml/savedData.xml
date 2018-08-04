@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<post>
+    <totalFreeParkingSpaces>2</totalFreeParkingSpaces>
+    <totalEntries>3</totalEntries>
+    <totalCarsFromParking>18</totalCarsFromParking>
+    <pollutionBuffer>11%</pollutionBuffer>
+</post>
+<post>
+    <totalFreeParkingSpaces>6</totalFreeParkingSpaces>
+    <totalEntries>2</totalEntries>
+    <totalCarsFromParking>17</totalCarsFromParking>
+    <pollutionBuffer>6%</pollutionBuffer>
+</post>
+<post>
+    <totalFreeParkingSpaces>0</totalFreeParkingSpaces>
+    <totalEntries>5</totalEntries>
+    <totalCarsFromParking>20</totalCarsFromParking>
+    <pollutionBuffer>15%</pollutionBuffer>
+</post>
+<post>
+    <totalFreeParkingSpaces>5</totalFreeParkingSpaces>
+    <totalEntries>6</totalEntries>
+    <totalCarsFromParking>21</totalCarsFromParking>
+    <pollutionBuffer>14%</pollutionBuffer>
+</post>
+<post><totalFreeParkingSpaces>1</totalFreeParkingSpaces><totalEntries>4</totalEntries><totalCarsFromParking>19</totalCarsFromParking><pollutionBuffer>16%</pollutionBuffer></post><post><totalFreeParkingSpaces>1</totalFreeParkingSpaces><totalEntries>4</totalEntries><totalCarsFromParking>19</totalCarsFromParking><pollutionBuffer>16%</pollutionBuffer></post><post><totalFreeParkingSpaces>6</totalFreeParkingSpaces><totalEntries>4</totalEntries><totalCarsFromParking>19</totalCarsFromParking><pollutionBuffer>16%</pollutionBuffer></post><post><totalFreeParkingSpaces>6</totalFreeParkingSpaces><totalEntries>4</totalEntries><totalCarsFromParking>19</totalCarsFromParking><pollutionBuffer>16%</pollutionBuffer></post><post><totalFreeParkingSpaces>6</totalFreeParkingSpaces><totalEntries>4</totalEntries><totalCarsFromParking>19</totalCarsFromParking><pollutionBuffer>16%</pollutionBuffer></post><post><totalFreeParkingSpaces>22</totalFreeParkingSpaces><totalEntries>3</totalEntries><totalCarsFromParking>18</totalCarsFromParking><pollutionBuffer>11%</pollutionBuffer></post></data>

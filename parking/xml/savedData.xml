@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+<post>
+    <totalFreeParkingSpaces>3</totalFreeParkingSpaces>
+    <totalEntries>2</totalEntries>
+    <totalCarsFromParking>17</totalCarsFromParking>
+</post>
+<post>
+    <totalFreeParkingSpaces>2</totalFreeParkingSpaces>
+    <totalEntries>3</totalEntries>
+    <totalCarsFromParking>18</totalCarsFromParking>
+</post>
+<post>
+    <totalFreeParkingSpaces>4</totalFreeParkingSpaces>
+    <totalEntries>6</totalEntries>
+    <totalCarsFromParking>21</totalCarsFromParking>
+</post>
+<post>
+    <totalFreeParkingSpaces>2</totalFreeParkingSpaces>
+    <totalEntries>3</totalEntries>
+    <totalCarsFromParking>18</totalCarsFromParking>
+</post>
+<post>
+    <totalFreeParkingSpaces>2</totalFreeParkingSpaces>
+    <totalEntries>3</totalEntries>
+    <totalCarsFromParking>18</totalCarsFromParking>
+</post>
+<post>
+    <totalFreeParkingSpaces>2</totalFreeParkingSpaces>
+    <totalEntries>3</totalEntries>
+    <totalCarsFromParking>18</totalCarsFromParking>
+</post>
+<post><totalFreeParkingSpaces>12</totalFreeParkingSpaces><totalEntries>3</totalEntries><totalCarsFromParking>18</totalCarsFromParking></post><post><totalFreeParkingSpaces>9</totalFreeParkingSpaces><totalEntries>6</totalEntries><totalCarsFromParking>21</totalCarsFromParking></post><post><totalFreeParkingSpaces>9</totalFreeParkingSpaces><totalEntries>6</totalEntries><totalCarsFromParking>21</totalCarsFromParking></post><post><totalFreeParkingSpaces>7</totalFreeParkingSpaces><totalEntries>3</totalEntries><totalCarsFromParking>18</totalCarsFromParking></post><post><totalFreeParkingSpaces>7</totalFreeParkingSpaces><totalEntries>3</totalEntries><totalCarsFromParking>18</totalCarsFromParking></post><post><totalFreeParkingSpaces>8</totalFreeParkingSpaces><totalEntries>2</totalEntries><totalCarsFromParking>17</totalCarsFromParking></post></data>

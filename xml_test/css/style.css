@@ -1,0 +1,24 @@
+.rTableHeading, .rTableBody,  .rTableRow{
+    clear: both;
+}
+.rTableHead  {
+    background-color: yellow;
+    font-weight: 900;
+}
+.rTableCell, .rTableHead {
+    border: 1px solid #999999;
+    float: left;
+    height: 17px;
+    overflow: hidden;
+    padding: 3px 1.8%;
+    width: 12.5%;
+}
+.center {
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+}
+.drop-down {
+    font-weight: 900;
+    width: 100%;
+}
