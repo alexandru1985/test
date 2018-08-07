@@ -1,0 +1,24 @@
+ls - listeaza fisierele si folderele din directorul curent
+ls -l (argument) va lista informatii despre fiecare fisier sau folder in parte
+cd schimba directorul se poate folosi tab pentru autocoplete
+cd .. up un director
+dhclient ens34
+touch file1.txt va crea un nou fisier
+cat file1.txt va citi un fisier
+head -n 2 file1.txt afiseaza primele 2 linii din fisier
+tail -n 2 file1.txt afiseaza ultimele 2 linii din fisier
+echo "Text pentru file2" > file2.txt va adauga text in fisier
+echo "Alt text pentru file2" >> file2.txt va adauga text in fisier
+rm file1.txt sterge ub fisier
+rm file1.txt file2.txt va sterge ambele fisiere
+rm * va sterge toate fisierele
+cp file1.txt copy_file1.txt va copia un fisier
+mv copy_file1.txt Stuff va muta fisierul in folder
+mv ../file2.txt . sare un folder
+mv copy_file1.txt Copy_file1.txt redenumeste fisierul
+mkdir TestFolder creaza un nou folder
+rmdir TestFolder sterge un folder
+rmdir nu functioneaza daca nu este gol folderul
+rm -rf TestFolder va sterge folderul chiar daca are fisiere in el
+mv Folder1/ Folder2/ 
+mv Folder2/ MyNewFolder redenumeste fisierul 

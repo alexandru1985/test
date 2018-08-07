@@ -1,0 +1,34 @@
+$_GET trimite parametrii in url, iar $_POST trimite parametrii utilizand metoda HTTPS POST, care furnizeaza Security Socket Layer.
+$_SESSION este o variabila superglobala a carei valoare poate fi citita pe orice pagina care contine session_start(). Sessiunea se distruge
+utilizand session_destroy().
+$_FILES memoreaza informatii despre fisierele upload-ate.
+unset sterge o variabila, iar unlink un fisier
+Intr-o clasa sunt definite proprietatile si metodele unei clase ( se instantiaza folosind operatorul new). Printr-un obiect se pot 
+apela proprietatile si metodele acelei clase.
+Am utilizat metoda magica __construct(). In aceasta metoda ruleaza codul default al unei clase. De asemenea, parametrii trimisi atunci cand se 
+instantiaza obiectul ajung in constructor.
+Metode de tip getters si setters.
+O proprietate sau o metoda se apeleaza cu $this.
+Diferenta dintre modificatorii de acces este ca doar atributele public si protected se pot mosteni, nu si private, iar atributele protected 
+si private nu pot fi accesate din afara clasei; modificatorii de acces sunt obligatorii pentru proprietati sau atribute,
+iar pentru metode modificatorul implicit este public.
+Diferenta dintre o clasa abstracta si o interfata (notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta poti sa scrii cod;
+daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta; poti mosteni o singura clasa, insa poti
+implementa mai multe interfete.
+Type hinting de la PHP 5.6 poti seta ce tip sa fie parametrul unei metode int, string, array. Pentru notiunea de dependency injection
+se asteapta ca paramentru un obiect.
+XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(). De asemeneaa SQL Injection se poate preveni
+utilizand mysqli_real_escape_string() pentru parametrul $_POST.
+Daca instantiezi mai multe obiecte cu referire la design pattern-ul singleton si aplici var_dump o sa iti arate acelasi obiect.
+Un index este folosit pentru a se cauta mai repede intr-o tabela; CREATE INDEX, ALTER TABLE ... ADD INDEX, ALTER TABLE ... DROP INDEX El se foloseste pentru campurile care sunt utilizate in clauza WHERE. 
+Dezavantajele unui index sunt ca el incarca memoria; operatiile de INSERT INTO, UPDATE si DELETE se executa mai greu deoarece se
+actualizeaza si tabela de index.
+CREATE TABLE, ALTER TABLE
+INNER JOIN va afisa andurile care corespund in ambele tabele
+LEFT JOIN va afisa toate randurile din tabela din stanga, iar atunci cand nu gaseste randuri in tabela din dreapta va afisa NULL; 
+RIGHT JOIN
+Functii agregate SQL: COUNT, SUM, MIN, MAX. Clauza WHERE nu permite utilizarea functiilor agregate de aceea se foloseste HAVING care
+cauta in rezultat.
+COUNT sau SUM + GROUP BY in interogare
+Daca o tabela se afla in situatia many to many este indicat sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii 
+one to many.

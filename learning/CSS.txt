@@ -1,0 +1,217 @@
+
+div:after {
+clear:both;
+}
+clear: left, right sau both inseamna ca se revine la layout-ul normal dupa float
+
+Inheritance 
+
+p {
+color:blue;
+}
+
+Selector (descendent) sau Selector specitificy
+
+#main_content p {
+color:black
+}
+
+
+Targeting multiple elements 
+
+p, span, a, li {
+background-color: black;
+font-size:14px;
+font-weight:bold;
+font-family: Arial;
+}
+
+
+Child selectors
+#main_content > p {
+
+}
+
+Adjacent selector 
+
+#all-articles h2 + p {
+color:green; 
+// va afisa verde pentru primul p din div
+}
+
+Atributes selector
+
+span [class="test"] {
+background:red;
+}
+div [id] {
+background:red;
+}
+
+
+Pseudo selector 
+
+a:hover {
+background:red;
+}
+:hover este o pseudo clasa
+Tagul <a>
+
+a:hover {
+background:red;
+}
+
+a:active {
+background:blue;
+}
+
+a:visited {
+background:black;
+}
+
+First child and last child selectors
+
+article p: first-child {
+
+font-weight: bold;
+
+}
+
+article p: last-child {
+
+color: red;
+
+}
+
+First & Last of Type Selectors
+
+article p: first of type {
+
+font-weight: bold;
+
+}
+
+article p: last of type {
+
+color: red;
+
+}
+nth Child Selectors
+
+// pentru tabele
+n este default 0
+article:nth-child (2n+1) {
+
+background:grey;
+
+}
+
+nth of Type Selectors
+
+article:nth-of-type (2n+1) {
+
+background:grey;
+
+}
+
+
+Combining selector
+
+#shop a.add_to_bag
+div.featured-content {background:blue;}
+
+article.featured-content {
+background:red;
+}
+
+
+Universal selector * {
+h1, h2, article 
+}
+
+Font Size (marimea fontului)
+
+article {
+font-size:16px;
+}
+
+article h2 {
+font-size:3em; // 48px;
+se mosteneste dimensiunea fontului
+}
+
+article p {
+font-size:50%;// 8px;
+}
+
+Text decoration
+
+article {
+text-decoration:underline;
+}
+
+p 
+{
+text-decoration:inherit;
+}
+
+text-decoration: overline, line-trough (textul este taiat pe mijloc), none
+
+Font Weight (grosimea fontului)
+
+font-weight, poate fi setat proprietati:100,200 ...900 (este bold), normal, bold, bolder, lighter, inherit
+
+Text Transform
+
+text-transform:capitalize (mareste prima litera a fiecarui cuvant dintr-un text), uppercase (mareste prima litera a primului cuvant dintr-un text),
+lowercase (sens contrar), inherit, none, full-width
+
+text-align:center (se poate folosi si pentru imagini)
+Letter Spacing & Line Height
+p {
+font-size:12px;
+letter-spacing:0.2em; (distanta dintre litere)
+}
+
+p {
+font-size:12px;
+line-height:24px; (inaltimea dintre paragrafe)
+}
+
+The box model 
+
+	margin
+	padding
+width	element 
+	height
+
+Margin
+
+margin: 30px 20px  15px   5px
+	top  right bottom left
+margin: 30px 20px  15px  
+	top  right bottom 
+daca nu este specificat left va lua valuarea lui right
+
+margin: 30px 		20px
+	top and bottom  left and right
+margin: 30px 
+	top,bottom,left,right
+	
+padding: similar cu margin
+
+Block-level Elements
+
+display: block va afisa elementele unele sub altele
+display:inline-block va afisa elementele in linie
+
+Backgrounds
+background-color
+background-position: center, top left, top right
+
+Opacity
+0.3, 0.7, 1
+
+Box Shadow
+
+box-shadow:2px 2px functioneaza in stanga si in dreapta unui buton spre exemplu
