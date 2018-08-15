@@ -1,0 +1,80 @@
+users
+id name
+1  User 1
+2  User 2
+3  User 3
+articles
+id    user_id     title       body
+1        1	   t1	      desc1
+2        2	   t2	      desc2
+3        1	   t3	      desc3
+4        1	   t4	      desc4
+
+One to many (Inverse)
+
+Ca sa afisezi name-ul pentru user_id din articles, trebuie sa faci o metoda in modelul Article prin care sa faci referinta la modelul User,
+adica articolele apartin de User
+
+/// Controller
+    use App\Article;
+
+    public function one_to_many_belongs()
+    {
+        $articles = Article :: all();
+        return view('one_to_many_belongs', compact('articles'));
+    }
+
+/// Model Article 
+    namespace App;
+
+    public function getPosterUsername() 
+    {        
+        return $this->belongsTo('App\User','user_id'); 
+        
+        // daca metoda nu este user (in acest caz getPosterUsername) se parseaza si cheia externa,
+        // pentru ca Laravel nu construieste cheia externa utilizand numele metodei in acest caz
+        
+    }
+/// View
+     @foreach ($articles as $article)
+         <h1>{{$article->title}} posted by <small>{{$article->getPosterUsername->name}}</small></h1>
+                <p>{{$article->body}}</p>
+     @endforeach
+
+One to many
+
+Se foloseste ca sa afisezi articolele corespunzatoare user-ului printr-un parametru trecut prin url. In acest caz se scrie in modelul User
+metoda articles().
+
+/// routes
+Route::get('/one_to_many_has_many/{username}', 'TestController@one_to_many_has_many');
+
+/// Controller
+    use App\Article;
+
+    public function one_to_many_has_many($username)
+    {
+        $user =  User :: where('name',$username)->first();
+        return view('one_to_many_has_many', compact('user'));
+    }
+
+
+/// Model
+
+    public function articles() {
+        return $this->hasMany('App\Article');
+    } 
+
+/// View 
+
+    @foreach ($user->articles as $article)
+              <h1>{{$article->title}}</h1>
+                <p>{{$article->body}}</p>
+    @endforeach
+
+
+
+
+
+
+
