@@ -9,7 +9,7 @@ head -n 2 file1.txt afiseaza primele 2 linii din fisier
 tail -n 2 file1.txt afiseaza ultimele 2 linii din fisier
 echo "Text pentru file2" > file2.txt va adauga text in fisier
 echo "Alt text pentru file2" >> file2.txt va adauga text in fisier
-rm file1.txt sterge ub fisier
+rm file1.txt sterge un fisier
 rm file1.txt file2.txt va sterge ambele fisiere
 rm * va sterge toate fisierele
 cp file1.txt copy_file1.txt va copia un fisier
