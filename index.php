@@ -501,4 +501,27 @@ $thesaurus = new Thesaurus(
 echo $thesaurus->getSynonyms("big");
 echo "\n";
 echo $thesaurus->getSynonyms("agelast");
+
+echo "<br>";
+echo "/////////////////////////////";
+
+
+$pattern = '/(wizard-duel-texts)|(wizard-duel-images)/';
+$url = 'localhost/ucp/public/wizard-duel-texts/2901';
+ if (preg_match_all($pattern, $url, $match)) {
+
+//     echo "Test";
+//     echo "<pre>";
+//     var_dump($match);
+//     echo "</pre>";
+//     echo $match[0][0];
+//     echo "<br>";
+     echo $str = strstr($url, $match[0][0]);
+     echo '<br>';
+     echo str_replace($match[0][0].'/', '', $str);
+ }
+ echo '<br>';
+ $url="index.php?page=task&view=list&pageNr=2";
+ $pos = strpos($url, "&pageNr");
+echo $url = substr($url, 0, $pos);
 ?>

@@ -5,7 +5,7 @@ $_FILES memoreaza informatii despre fisierele upload-ate.
 unset sterge o variabila, iar unlink un fisier
 Intr-o clasa sunt definite proprietatile si metodele unei clase ( se instantiaza folosind operatorul new). Printr-un obiect se pot 
 apela proprietatile si metodele acelei clase.
-Am utilizat metoda magica __construct(). In aceasta metoda ruleaza codul default al unei clase. De asemenea, parametrii trimisi atunci cand se 
+Metoda magica __construct() ruleaza atunci cand un obiect este instantiat. De asemenea, parametrii trimisi atunci cand se 
 instantiaza obiectul ajung in constructor.
 Metode de tip getters si setters.
 O proprietate sau o metoda se apeleaza cu $this.
@@ -15,16 +15,177 @@ iar pentru metode modificatorul implicit este public.
 Diferenta dintre o clasa abstracta si o interfata (notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta poti sa scrii cod;
 daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta; poti mosteni o singura clasa, insa poti
 implementa mai multe interfete.
+
+class Login {
+
+    // eroare nu i se poate atribui unei proprietati o functie
+    private $lastLogin = time();
+
+
+}
+
+class Foo
+{
+   // aceasta metoda nu mai poate fi suprascrisa si poate avea ca modificator de acces doar public;
+
+   final public function printItem($string)
+    {
+        echo 'Foo: ' . $string . PHP_EOL;
+    }
+    
+
+}
+
+class Bar extends Foo
+{ 
+
+    // o metoda care se suprascrie trebuie sa aiba acelasi numar de argumente ca si metoda initiala
+
+    public function printItem($string)
+    {
+        echo 'Bar: ' . $string . PHP_EOL;
+    }
+}
+
+class A extends B
+{
+    public function __construct() {
+    // clasa A va mosteni tot ce este in constructorul din clasa B
+    parent::__construct();
+ }
+}
+// nu se poate mosteni
+
+final class Employee {}
+
+
+<?php
+interface PaymentProvider
+{
+    // definirea metodelor fara detalii
+
+    public function showPaymentPage();
+    public function contactGateway(array $messageParameters);
+    public function notify(string $email);
+}
+A class would be declared as implementing it like this:
+<?php
+class CreditCard implements PaymentProvider
+{
+// impunerea implementatrii metodelor
+
+public function showPaymentPage() {
+// implementation
+}
+public function contactGateway(array $messageParameters) {
+// implementation
+}
+public function notify(string $email) {
+// implementation
+}
+}
+
+
+interface a
+{
+    public function foo(); // metoda poate fi doar public
+}
+
+interface b
+{
+    public function bar();
+}
+
+// o interfata poate mosteni mai multe interfete
+
+interface c extends a, b
+{
+    public function baz();
+}
+
+
+<?php
+abstract class Paintings
+{
+// nu poate fi private
+abstract protected function paintingA();
+protected function paintingB() {
+echo " I have an implementation so this is not an abstract method ";
+}
+public function __construct() {
+echo "I cannot be constructed!";
+}
+}
+
+class Foo extends Paintings {
+public function A() { echo "test"; }
+}
+
+O clasa abstracta nu se poate instantia. Trebuie definite doar metodele setate ca abstract in clasa in care sunt mostenite.
+
+// Clasa anonima
+$object = new class('argument') {
+public function __construct(string $message) {
+echo $message;
+}
+};
+
+
+<?php
+trait Singleton
+{
+    private static $instance;
+    public static function getInstance() {
+        if (!(self::$instance instanceof self)) {
+            self::$instance = new self;
+}
+    return self::$instance;
+}
+}
+class UsingTraitExample
+{
+    use Singleton;
+}
+$object = UsingTraitExample::getInstance();
+var_dump($object instanceof UsingTraitExample); // true
+
 Type hinting de la PHP 5.6 poti seta ce tip sa fie parametrul unei metode int, string, array. Pentru notiunea de dependency injection
 se asteapta ca paramentru un obiect.
 XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(). De asemeneaa SQL Injection se poate preveni
 utilizand mysqli_real_escape_string() pentru parametrul $_POST.
+CSRF (Cross Site Request Forgery - se citeste forgeri) - doar user-ul curent poate face submit la un formular, iar datele sa fie procesate. Se genereaza un token care se tine pe o 
+sesiune, iar atunci cand token-ul este valabil(adica este cel stocat pe sesiune) se trimite formularul si se executa o actiune spre exemplu.
 Daca instantiezi mai multe obiecte cu referire la design pattern-ul singleton si aplici var_dump o sa iti arate acelasi obiect.
+Incapsularea inseamna apelarea unei proprietati private din afara clasei, care este setata mai intai printr-o metoda de tip setters publica.
+Un trait nu se poate instantia. Printr-un trait se mostenesc metodele acestuia intr-o clasa ( se adauga use Trait in interiorul clasei). Acesta este util deoarece nu se pot mosteni mai multe clase in PHP.
+
+//create function with an exception
+function checkNum($number) {
+  if($number>1) {
+    throw new Exception("Value must be 1 or below");
+  }
+  return true;
+}
+
+//trigger exception in a "try" block
+try {
+  checkNum(2);
+  //If the exception is thrown, this text will not be shown
+  echo 'If you see this, the number is 1 or below';
+}
+
+//catch exception
+catch(Exception $e) {
+  echo 'Message: ' .$e->getMessage();
+}
+
+Message: Value must be 1 or below 
+
 Un index este folosit pentru a se cauta mai repede intr-o tabela; CREATE INDEX, ALTER TABLE ... ADD INDEX, ALTER TABLE ... DROP INDEX El se foloseste pentru campurile care sunt utilizate in clauza WHERE. 
 Dezavantajele unui index sunt ca el incarca memoria; operatiile de INSERT INTO, UPDATE si DELETE se executa mai greu deoarece se
 actualizeaza si tabela de index.
 CREATE TABLE, ALTER TABLE
-INNER JOIN va afisa andurile care corespund in ambele tabele
+INNER JOIN va afisa randurile care corespund in ambele tabele
 LEFT JOIN va afisa toate randurile din tabela din stanga, iar atunci cand nu gaseste randuri in tabela din dreapta va afisa NULL; 
 RIGHT JOIN
 Functii agregate SQL: COUNT, SUM, MIN, MAX. Clauza WHERE nu permite utilizarea functiilor agregate de aceea se foloseste HAVING care
@@ -32,3 +193,4 @@ cauta in rezultat.
 COUNT sau SUM + GROUP BY in interogare
 Daca o tabela se afla in situatia many to many este indicat sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii 
 one to many.
+ADD CONSTRAINT poate fi ON DELETE sau ON UPDATE, RELATION VIEW

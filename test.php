@@ -1,7 +1,7 @@
 <?php
 
 $counter = 0;
-for ($x = 0; $x < 5; $x += 2 /*$x=2*/) {
+for ($x = 0; $x < 5; $x += 2 /* $x=2 */) {
     echo $counter++;
 }
 echo "<br>";
@@ -149,12 +149,35 @@ var_dump($test1);
 // SELECT * FROM `products` WHERE price IN (30,40)
 // SELECT * FROM `products` WHERE price BETWEEN 30 AND 80 
 /* SELECT bundleId, productId, products.productName, products.price, bundles.bundleName, bundles.discount FROM bundle_products
-   INNER JOIN products ON bundle_products.productId = products.id
-   INNER JOIN bundles ON bundle_products.bundleId = bundles.id */
+  INNER JOIN products ON bundle_products.productId = products.id
+  INNER JOIN bundles ON bundle_products.bundleId = bundles.id */
 
 // SELECT COUNT(CustomerID), Country FROM Customers
 // GROUP BY Customers
 // ORDER BY COUNT(CustomerID) DESC;
 
 
-echo ( function($x) { return [$x, $x+1, $x+2]; } ) (4) [2];
+echo ( function($x) {
+    return [$x, $x + 1, $x + 2];
+} )(4) [2];
+
+echo '<br>';
+
+function randStr($len) {
+
+    $result = "";
+    $chars = "abcdefghijklmnopqurstuwxyz0123456789";
+    $charArray = str_split($chars);
+   
+    for ($i = 0; $i < $len; $i++) {
+
+        $randItem = array_rand($charArray);
+
+        $result .= "".$charArray[$randItem];
+
+
+    }
+       return $result;
+}
+
+echo randStr(32);
