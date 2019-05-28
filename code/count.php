@@ -24,4 +24,4 @@ $('#textarea').keyup(function() {
 </div>
 </body>
 </html>
-
+<?php
