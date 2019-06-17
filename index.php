@@ -239,7 +239,8 @@ function solution3($A) {
     }
     return implode('', $arr);
 }
-echo  'ABC';
+
+echo 'ABC';
 echo solution3($A);
 
 
@@ -399,8 +400,7 @@ $bundleName = array(
 
 class Validation {
 
-    private $haystack = array(2,5,7,11);
-   
+    private $haystack = array(2, 5, 7, 11);
 
     public function checkDigits($str) {
 
@@ -442,7 +442,7 @@ class Validation {
             $error .= 'Only digits permetted.<br />';
         }
         //check if the argument is in array
-        if ($this->ifInArray($str,$this->haystack) == false) {
+        if ($this->ifInArray($str, $this->haystack) == false) {
             $error .= 'Argument is not in sequence.<br />';
         }
         return $error;
@@ -471,32 +471,30 @@ class Database {
 
 $obj = Database::getInstance();
 
+class Thesaurus {
 
-class Thesaurus
-{
     private $thesaurus;
 
-    function Thesaurus($thesaurus)
-    {
+    function Thesaurus($thesaurus) {
         $this->thesaurus = $thesaurus;
     }
 
-    public function getSynonyms($word)
-    {
+    public function getSynonyms($word) {
         if (array_key_exists($word, $this->thesaurus)) {
-   foreach ($this->thesaurus as $value) {
-    echo $value;
-}
-}
+            foreach ($this->thesaurus as $value) {
+                echo $value;
+            }
+        }
     }
+
 }
 
 $thesaurus = new Thesaurus(
-    array 
-        (
-            "buy" => array("purchase"),
-            "big" => array("great", "large")
-        )); 
+        array
+    (
+    "buy" => array("purchase"),
+    "big" => array("great", "large")
+        ));
 
 echo $thesaurus->getSynonyms("big");
 echo "\n";
@@ -506,22 +504,83 @@ echo "<br>";
 echo "/////////////////////////////";
 
 
-$pattern = '/(wizard-duel-texts)|(wizard-duel-images)/';
-$url = 'localhost/ucp/public/wizard-duel-texts/2901';
- if (preg_match_all($pattern, $url, $match)) {
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
 
-//     echo "Test";
-//     echo "<pre>";
-//     var_dump($match);
-//     echo "</pre>";
-//     echo $match[0][0];
-//     echo "<br>";
-     echo $str = strstr($url, $match[0][0]);
-     echo '<br>';
-     echo str_replace($match[0][0].'/', '', $str);
- }
- echo '<br>';
- $url="index.php?page=task&view=list&pageNr=2";
- $pos = strpos($url, "&pageNr");
-echo $url = substr($url, 0, $pos);
-?>
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+
+for ($i = 0; $i <= 10; $i++) {
+    echo "The number is $i";
+}
+

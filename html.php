@@ -109,3 +109,10 @@
         </script>
     </body>
 </html>
+<?php
+
+$arr = array ('first' => 'a', 'second' => 'b', );
+$key = array_search ('b', $arr);
+
+echo $key;
+?>

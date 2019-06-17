@@ -89,7 +89,7 @@ class AutomobileFactory {
 
 }
 
-$veyron = AutomobileFactory::create('Bugatti', 'Veyron');
+$veyron = AutomobileFactory::create('Dacia', 'Logan');
 
 print_r($veyron->getMakeAndModel());
 
@@ -181,3 +181,5 @@ function randStr($len) {
 }
 
 echo randStr(32);
+$_SERVER['GEOIP_COUNTRY_CODE'];
+

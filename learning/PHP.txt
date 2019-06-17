@@ -118,7 +118,7 @@ echo "I cannot be constructed!";
 }
 
 class Foo extends Paintings {
-public function A() { echo "test"; }
+public function paintingA() { echo "test"; }
 }
 
 O clasa abstracta nu se poate instantia. Trebuie definite doar metodele setate ca abstract in clasa in care sunt mostenite.
@@ -194,3 +194,5 @@ COUNT sau SUM + GROUP BY in interogare
 Daca o tabela se afla in situatia many to many este indicat sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii 
 one to many.
 ADD CONSTRAINT poate fi ON DELETE sau ON UPDATE, RELATION VIEW
+PRIMARY KEY nu permite valori negative sau null, in timp ce UNIQUE KEY permite null.
+
