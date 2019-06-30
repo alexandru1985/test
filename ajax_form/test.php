@@ -90,7 +90,6 @@
             $('.btn').click(function (e) {
                 e.preventDefault();
 
-                alert('sdasdfdas');
 
                 var id =  $("#deactivate123").attr('id');
                 $("#deactivate123").parent().parent().css( "background-color", "red" ).attr('id',id);
