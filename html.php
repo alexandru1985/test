@@ -5,6 +5,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
 
     </head>
+    <style>
+        .label {
+  color: white;
+  display: block;
+  padding-bottom:5px;
+  padding-top: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  font-family: Arial;
+  width:100px;
+  text-align: center;
+}
+.success {background-color: #5cb85c; border: 1px solid transparent; border-color: #4cae4c;} /* Green */
+.info {background-color: #2196F3;} /* Blue */
+.warning {background-color: #ff9800;} /* Orange */
+.danger {background-color: #f44336;} /* Red */ 
+.other {background-color: #e7e7e7; color: black;border: 1px solid transparent;} /* Gray */ 
+</style>
+     </style>
     <body>
         <div class="input-group mb-3">
             <div class="custom-file">
@@ -51,6 +70,13 @@
 
         </div>
         <button id='order'> Order </button>
+        
+        <span class="label success">Active</span>
+        <span class="label success">Inactive</span>
+<span class="label info">Info</span>
+<span class="label warning">Warning</span>
+<span class="label danger">Danger</span>
+<span class="label other">Other</span>
         <script>
 //            $('#inputGroupFile02').on('change', function () {
 //                //get the file name
