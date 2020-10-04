@@ -82,12 +82,3 @@ function recursion($my_array) {
     return recursion($my_array);
 }
 
-$my_array = array(3, 6, 2, 5, -1, 4, 7, -3);
-echo recursion($my_array);
-$a = "apples" <=> "bananas";
-$b = $a ?? $c ?? 10;
-echo $b;
-
-$a = array('three','four','five');
-$b = array('one','two');
-echo count($a - $b);
