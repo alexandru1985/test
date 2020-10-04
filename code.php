@@ -3,7 +3,7 @@
 function solution($A, $key) {
 
     $countArr = count($A);
-    
+
     for ($i = 0; $i <= count($A) - 1; $i++) {
 
         if ($i < $key) {
@@ -11,41 +11,30 @@ function solution($A, $key) {
         } else {
             $newArr[$i] = $A[$i - $key];
         }
-
     }
 
     return $newArr;
 }
 
-
 function solutionTest($A, $key) {
-    
-    
-    for($j = 1; $j<=7; $j++) {
+
+
+    for ($j = 1; $j <= 7; $j++) {
         for ($i = 0; $i <= count($A) - 2; $i++) {
 
             $newArr[0] = $A[count($A) - 1];
-            $newArr[$i+1] = $A[$i];
-    
-
-        
-
-    }
+            $newArr[$i + 1] = $A[$i];
+        }
     }
     return $newArr;
-    
-    
 }
-
-
-
-
 
 $array = [3, 8, 9, 7, 6];
 $test = solutionTest($array, 2);
 echo '<pre>';
 var_dump($test);
 echo '</pre>';
+
 //
 //For example, given
 //    A = [3, 8, 9, 7, 6]
@@ -58,11 +47,11 @@ echo '</pre>';
 
 
 function solution1($A) {
-    
-     $arrCountValues = array_count_values($A);
-     $arr = array_flip($arrCountValues);
-     
-     return $arr[1];
+
+    $arrCountValues = array_count_values($A);
+    $arr = array_flip($arrCountValues);
+
+    return $arr[1];
 }
 
 //$array1 = [5, 3, 5, 3, 5, 7, 5 ];
@@ -72,3 +61,33 @@ function solution1($A) {
 //var_dump($test1);
 //echo '</pre>';
 
+$my_array = array(7, 6, 2, 5, -1, 4, 7, -3);
+$pivot = array_shift($my_array);
+
+//var_dump($pivot);
+//die();
+
+function recursion($my_array) {
+
+
+    $number = array_shift($my_array);
+    unset($my_array[0]);
+
+    if ($number > 0) {
+        $sum[] = $number;
+    }
+    if (count($my_array) < 1) {
+        return var_dump($sum);
+    }
+    return recursion($my_array);
+}
+
+$my_array = array(3, 6, 2, 5, -1, 4, 7, -3);
+echo recursion($my_array);
+$a = "apples" <=> "bananas";
+$b = $a ?? $c ?? 10;
+echo $b;
+
+$a = array('three','four','five');
+$b = array('one','two');
+echo count($a - $b);

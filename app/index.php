@@ -13,7 +13,7 @@
 </html>
 
 <?php
-require 'autoload.php';
+require 'vendor/autoload.php';
 
 $db = new Db("localhost", "root", "", "tree");
 $fileUploader = new Upload();

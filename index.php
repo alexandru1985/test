@@ -1,55 +1,5 @@
 <?php
 
-class Test {
-
-    public $no_days = 0;
-    public $weekends = 0;
-
-    public function deadline_status($deadline_time) {
-
-        $begin = strtotime(date('d.m.Y'));
-        $end = strtotime(date('d.m.Y', $deadline_time));
-
-
-        while ($begin <= $end) {
-            $this->no_days++; // no of days in the given interval
-            $what_day = date("N", $begin);
-            if ($what_day > 5) { // 6 and 7 are weekend days
-                $this->weekends++;
-            }
-            $begin += 86400; // +1 day
-        }
-        $days = $this->no_days - $this->weekends;
-
-
-        $status = '';
-
-        if ($days == 0) {
-            $status = '<span class="label ttip_b" style="background-color:#8c8c8c;">Expired</span>';
-        } elseif ($days == 1) {
-            $status = '<span class="label ttip_b" style="background-color:#ff4d4d;">Critical</span>';
-        } elseif ($days >= 2 && $days <= 3) {
-            $status = '<span class="label ttip_b" style="background-color:#e68a00;">Urgent </span>';
-        } elseif ($days > 3) {
-            $status = '<span class="label ttip_b" style="background-color:#058DC7;">Normal</span>';
-        }
-
-        return $status;
-    }
-
-}
-
-$obj = new Test();
-echo $obj->deadline_status(1499040000);
-
-
-//echo strpos(‘axz’, ‘a’);
-//	echo   $x = 3 + “15%” + “$25”;
-
-
-
-
-echo '<br>';
 $numbers = array(1, 2, 5, 7, 10, 18);
 $countNumbers = count($numbers);
 $sum = 0;
@@ -109,20 +59,6 @@ echo '<pre>';
 var_dump($produse);
 echo '</pre>';
 
-function recursion(array $produse) {
-
-    foreach ($produse as $categorii => $brand) {
-        foreach ($brand as $nume_brand => $cod) {
-            foreach ($cod as $tip_cod => $nume_cod) {
-                if ($tip_cod == 'cod_nou' && (strlen($nume_cod) > 0 )) {
-                    return $categorii . ' ' . $nume_brand . ' ' . $tip_cod . ' ' . $nume_cod . '<br>';
-                }
-            }
-        }
-    }
-}
-
-echo recursion($produse);
 
 $sort = array(3, 6, 1, 8, 6, 4, -1);
 $temp = 0;
@@ -309,43 +245,7 @@ $array = array(
 
 echo build_table($array);
 
-echo '<br>';
-$var_name1 = 'a678';
-if (is_numeric($var_name1)) {
-    echo "$var_name1 is Numeric.<br>";
-} else {
-    echo "$var_name1 is not Numeric. <br>";
-}
 
-function checkDigits($str) {
-
-    $str = explode(',', $str);
-    $str = implode('', $str);
-
-    if (is_numeric($str)) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-var_dump(checkDigits('6,7,8'));
-
-
-$ssn = 119980102991;
-echo substr($ssn, 9, 3);
-
-function checkSSN($ssn) {
-
-    $result = preg_match('/^[0-9]*$/', substr($ssn, 0, 1));
-    $result = preg_match('/^[0-9]*$/', substr($ssn, 9, 1));
-    $result = preg_match('/^[0-9]*$/', substr($ssn, 10, 1));
-    $result = preg_match('/^[0-9]*$/', substr($ssn, 11, 1));
-
-    return $result;
-}
-
-echo checkSSN('1199801021231');
 
 $unu = 0 * 1;
 $doi = 1 * 1;
@@ -471,34 +371,19 @@ class Database {
 
 $obj = Database::getInstance();
 
-class Thesaurus {
 
-    private $thesaurus;
 
-    function Thesaurus($thesaurus) {
-        $this->thesaurus = $thesaurus;
-    }
 
-    public function getSynonyms($word) {
-        if (array_key_exists($word, $this->thesaurus)) {
-            foreach ($this->thesaurus as $value) {
-                echo $value;
-            }
-        }
-    }
-
+function sayHello(): void {
+echo "Hello World";
 }
+// Hello World
+sayHello();
 
-$thesaurus = new Thesaurus(
-        array
-    (
-    "buy" => array("purchase"),
-    "big" => array("great", "large")
-        ));
 
-echo $thesaurus->getSynonyms("big");
-echo "\n";
-echo $thesaurus->getSynonyms("agelast");
-
-echo "<br>";
-echo "/////////////////////////////";
+function getFullName(string $firstName, string $lastName): string {
+return 123;
+}
+$name = getFullName('John', 'Doe');
+echo gettype($name);
+// string

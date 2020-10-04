@@ -1,3 +1,6 @@
+Lectia 1
+kernel pag. 3
+directoarele create la instalare pag. 13
 ls - listeaza fisierele si folderele din directorul curent
 ls -l (argument) va lista informatii despre fiecare fisier sau folder in parte
 cd schimba directorul se poate folosi tab pentru autocoplete
@@ -9,10 +12,12 @@ head -n 2 file1.txt afiseaza primele 2 linii din fisier
 tail -n 2 file1.txt afiseaza ultimele 2 linii din fisier
 echo "Text pentru file2" > file2.txt va adauga text in fisier
 echo "Alt text pentru file2" >> file2.txt va adauga text in fisier
-rm file1.txt sterge un fisier
+rm file1.txt sterge un fisier 
 rm file1.txt file2.txt va sterge ambele fisiere
 rm * va sterge toate fisierele
 cp file1.txt copy_file1.txt va copia un fisier
+cp file1.txt copy_file1.txt /files
+cp -r /files /project va copia directorul impreuna cu continutul sau
 mv copy_file1.txt Stuff va muta fisierul in folder
 mv ../file2.txt . sare un folder
 mv copy_file1.txt Copy_file1.txt redenumeste fisierul
@@ -21,4 +26,20 @@ rmdir TestFolder sterge un folder
 rmdir nu functioneaza daca nu este gol folderul
 rm -rf TestFolder va sterge folderul chiar daca are fisiere in el
 mv Folder1/ Folder2/ 
-mv Folder2/ MyNewFolder redenumeste fisierul 
+mv Folder2/ MyNewFolder redenumeste folderul
+pwd listeaza calea directorului curent
+find / -type f -name "*.conf"
+wc -l /etc/passwd se determina numarul de utilizatori din sistem; comanda wc poate afisa numarul de caractere, cuvinte sau linii dintr-un fisier
+/etc/passwd, baza de date cu utilizatori 
+/etc/shadow, baza de date cu parole
+sudo useradd -m user1, -m solicita crearea directorul personal al userului in /home
+sudo useradd -d /var/users -u 3001 -m user1
+chmod u+x file1 adauga drept de executie pentru owner folosind modul simbolic
+chmod 444 adauga dreptul de citire pentru toate categoriile folosind modul absolut
+ps -e | more listeaza toate procesele din sistem
+history 20 listeaza ultimele 20 de comenzi
+tar -zxpvf file_name dezarhiveaza un fisier
+cron - executa task-urile programate pentru fiecare ora, ruleaza o data pe minut
+/etc/crontab - fisierul principal de configurare, utilizabil doar de catre root
+
+

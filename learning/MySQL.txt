@@ -1,0 +1,247 @@
+Un index este folosit pentru a se cauta mai repede intr-o tabela; CREATE INDEX, ALTER TABLE ... 
+ADD INDEX, ALTER TABLE ... DROP INDEX El se foloseste pentru campurile care sunt utilizate in clauza WHERE. 
+Dezavantajele unui index sunt ca el incarca memoria; operatiile de INSERT INTO, UPDATE si DELETE 
+se executa mai greu deoarece se actualizeaza si fisierul de index.
+CREATE TABLE, ALTER TABLE
+INNER JOIN va afisa randurile care corespund in ambele tabele
+LEFT JOIN va afisa toate randurile din tabela din stanga, 
+iar atunci cand nu gaseste randuri in tabela din dreapta va afisa NULL; 
+Note: In some databases LEFT JOIN is called LEFT OUTER JOIN.
+RIGHT JOIN
+CROSS JOIN va face un produs cartezian intre randurile a doua tabele; 
+spre exemplu daca in tabela 1 exista 4 randuri, iar in tabela 2 tot 4 randuri un CROSS JOIN va afisa 16 randuri; 
+toate randurile din tabela 1 vor avea corespondenta cu fiecare rand din tabela 2
+Functii agregate SQL: COUNT, SUM, MIN, MAX. Clauza WHERE nu permite utilizarea functiilor agregate de aceea se foloseste HAVING care
+cauta in rezultat.
+Daca o tabela se afla in situatia many to many este indicat sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii 
+one to many.
+ADD CONSTRAINT poate fi ON DELETE sau ON UPDATE, RELATION VIEW
+PRIMARY KEY nu permite valori negative sau null, in timp ce UNIQUE KEY permite null.
+Diferenta dintre WHERE si HAVING. WHERE nu se poate folosi atunci cand se cauta in rezultat (atunci cand se folosesc functiile agregate de SQL: COUNT, SUM, MIN, MAX )
+SELECT COUNT(CustomerID), Country
+FROM Customers
+GROUP BY Country
+HAVING COUNT(CustomerID) > 5;
+
+SELECT COUNT(ticket.id) as count_tickets, ticket.description, ticket.status_id, location.name AS location_name FROM ticket 
+LEFT JOIN location ON ticket.location_id = location.id WHERE ticket.status_id = 1 
+GROUP BY location_name HAVING count_tickets > 5 ORDER BY count_tickets DESC
+
+SELECT ticket.id, ticket.description, ticket.status_id, location.name AS location_name FROM ticket 
+LEFT JOIN location ON ticket.location_id = location.id 
+WHERE ticket.status_id = 1 ORDER BY ticket.id DESC LIMIT 10
+
+TRUNCATE SQL query removes all rows from a table, without logging the individual row deletions. 
+
+TRUNCATE TABLE Customers;   
+
+DELETE FROM Customers WHERE OrderId > 1000;  
+
+MyISAM este mai rapid si se foloseste unde se utilizeaza SELECT intr-o tabela
+InnoDB se foloseste pentru crud
+
+
+
+Se observa ca atunci cand se adauga ORDER BY keyword creste si timpul de executie
+Showing rows 0 - 24 (66240 total, Query took 0.5604 seconds.)
+
+SELECT customer.*, state.name AS state_name FROM `customer` 
+INNER JOIN `state` ON customer.state_id = state.id 
+WHERE customer.age > 30
+ORDER BY customer.state_id ASC
+
+Atunci cand vrei sa afisezi mai multe campuri care nu au cheia externa in tabela de radacina, customer,
+poti sa folosesti un join implicit.
+
+SELECT customer.*, product.name AS product_name,brand.name AS brand_name, state.name AS state_name 
+FROM `customer_product`, `product`, `customer`, `state`, `brand`
+WHERE customer_product.product_id = product.id AND
+customer_product.customer_id = customer.id AND 
+state.id = customer.state_id AND
+brand.id = product.brand_id AND
+customer.id = 18
+
+Se executa comanda 
+
+SELECT customer.*, state.name AS state_name FROM `customer` INNER JOIN `state` 
+ON customer.state_id = state.id 
+WHERE customer.age = 30 ORDER BY customer.state_id ASC
+
+Se observa ca dupa ce se adauga EXPLAIN inainte de SELECT se va afisa la rows 102960, 
+iar timpul de executie este de 0.0883 seconds
+
+Apoi se adauga idx_age
+
+CREATE INDEX idx_age
+ON customer (age);
+
+DROP INDEX idx_age ON customer;
+Se observa ca la customer/structure si apoi mai jos la indexes apare idx_age
+
+Se executa din nou comanda 
+
+SELECT customer.*, state.name AS state_name FROM `customer` INNER JOIN `state` 
+ON customer.state_id = state.id 
+WHERE customer.age = 30 ORDER BY customer.state_id ASC
+
+Se observa ca dupa ce se adauga EXPLAIN inainte de SELECT se va afisa la rows 3329, 
+iar timpul de executie scade si este de 0.0342 seconds
+
+index compus
+CREATE INDEX idx_cname
+ON customer(first_name, last_name);
+
+Metode de prin care se poate optimiza un query
+
+Indexing
+Use SELECT <columns> instead of SELECT * 
+Use SELECT DISTINCT
+Use LIMIT to sample query results
+Use wildcards at the end of a phrase only
+SELECT City FROM Customers
+WHERE City LIKE ‘Char%’
+not ‘%Char%’
+Use WHERE instead of HAVING
+
+HAVING se foloseste intotdeauna cu GROUP BY
+
+The UNION operator is used to combine the result-set of two or more SELECT statements.
+
+SELECT statements trebuie sa aiba acelasi numar de coloane
+
+Un CONSTRAINT se se refera la legatura dintre cheile primare dintre 2 tabele;
+se poate  pune ON DELETE sau ON UPDATE cu optiunea CASCADE
+
+Se executa comanda
+
+ALTER TABLE customer_product ADD CONSTRAINT deleteUserProducts 
+FOREIGN KEY(customer_id) REFERENCES customer(id) ON DELETE CASCADE
+
+Se observa cum in tabela customer_product, fiecare id de la customer_id are o referinta (un link) catre cheia primara din tabela customer
+
+Se executa comanda 
+
+SELECT * FROM `customer_product` WHERE customer_id = 27
+
+Se sterge id=27 din customer
+
+Se executa din nou comanda 
+
+SELECT * FROM `customer_product` WHERE customer_id = 27
+
+Se observa ca nu mai sunt randuri in tabela customer_product
+
+Un view este o tabela virtuala 
+
+Se executa comanda
+
+CREATE VIEW last_customers AS SELECT * FROM customer ORDER BY id DESC LIMIT 10
+
+Se observa cum s-a creat o tabela virtuala la Views
+
+Apoi pentru a nu se mai scrie toata interogarea se poate scrie doar
+
+SELECT * FROM `last_customers`
+
+Daca se adauga un nou rand in customer se va face update si pentru datele din view
+
+Stored prodedures se folosesc atunci cand se refoloseste codul de mai multe ori
+
+DELIMITER //
+
+CREATE PROCEDURE SelectTopCustomers()
+BEGIN
+	SELECT *  FROM customers ORDER BY id DESC LIMIT 10;
+END //
+
+DELIMITER ;
+
+CALL SelectTopCustomers()
+
+Se observa cu a aparut procedura SelectTopCustomers() la Procedures
+
+
+START TRANSACTION
+
+INSERT INTO state (name) VALUES ("Nebraska")
+
+INSERT INTO customer (state_id, first_name, last_name, age) VALUES ("7", "Tim", "Haworth", "45")
+
+
+COMMIT
+
+
+START TRANSACTION
+
+INSERT INTO state(name) Values('Test')
+
+ROLLBACK
+
+ROLLBACK va anula operatia de insert
+
+
+/**
+ * Connect to MySQL and instantiate the PDO object.
+ * Set the error mode to throw exceptions and disable emulated prepared statements.
+ */
+$pdo = new PDO('mysql:host=localhost;dbname=test', 'root', '', array(
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_EMULATE_PREPARES => false
+));
+ 
+ 
+//We are going to assume that the user with ID #1 has paid 10.50.
+$userId = 1;
+$paymentAmount = 10.50;
+ 
+ 
+//We will need to wrap our queries inside a TRY / CATCH block.
+//That way, we can rollback the transaction if a query fails and a PDO exception occurs.
+try{
+ 
+    //We start our transaction.
+    $pdo->beginTransaction();
+ 
+ 
+    //Query 1: Attempt to insert the payment record into our database.
+    $sql = "INSERT INTO payments (user_id, amount) VALUES (?, ?)";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+            $userId, 
+            $paymentAmount,
+        )
+    );
+    
+    //Query 2: Attempt to update the user's profile.
+    $sql = "UPDATE users SET credit = credit + ? WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(array(
+            $paymentAmount, 
+            $userId
+        )
+    );
+    
+    //We've got this far without an exception, so commit the changes.
+    $pdo->commit();
+    
+} 
+//Our catch block will handle any exceptions that are thrown.
+catch(Exception $e){
+    //An exception has occured, which means that one of our database queries
+    //failed.
+    //Print out the error message.
+    echo $e->getMessage();
+    //Rollback the transaction.
+    $pdo->rollBack();
+}
+
+CREATE TRIGGER trigger_name
+{BEFORE | AFTER} {INSERT | UPDATE| DELETE }
+ON table_name FOR EACH ROW
+trigger_body;
+
+se selecteaza brand/Triggers/Add trigger
+
+CREATE TRIGGER `insertLog` AFTER INSERT ON `brand` FOR EACH ROW INSERT INTO log VALUES(null, NEW.id, "inserted", NOW());
+
+un trigger nou creat se poate vedea utilizand calea brand/Triggers

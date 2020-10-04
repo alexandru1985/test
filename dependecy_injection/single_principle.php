@@ -30,8 +30,8 @@ class SimpleFilePersistence {
 
 $file = new SimpleFilePersistence();
 
-$carte = new Book();
+$book = new Book();
 
-$file->save($carte);
+$file->save($book);
 
 

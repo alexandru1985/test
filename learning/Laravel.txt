@@ -1,0 +1,150 @@
+Facades provide a "static" interface to classes that are available in the application's service container.
+Laravel ships with many facades which provide access to almost all of Laravel's features.
+Laravel facades serve as "static proxies" to underlying classes in the service container
+providing the benefit of a terse, expressive syntax while maintaining more testability
+and flexibility than traditional static methods.
+All of Laravel's facades are defined in the Illuminate\Support\Facades namespace.
+
+$book = Book::find(1);
+
+Laravel's Contracts are a set of interfaces that define the core services provided by the framework.
+For example, a Illuminate\Contracts\Queue\Queue contract defines the methods needed for queueing jobs,
+while the Illuminate\Contracts\Mail\Mailer contract defines the methods needed for sending e-mail.
+
+users
+id name
+1  User 1
+2  User 2
+3  User 3
+articles
+id    user_id     title       body
+1        1	   t1	      desc1
+2        2	   t2	      desc2
+3        1	   t3	      desc3
+4        1	   t4	      desc4
+
+One to many (Inverse)
+
+Ca sa afisezi name-ul pentru user_id din articles, trebuie sa faci o metoda in modelul Article prin care sa faci referinta la modelul User,
+adica articolele apartin de User
+
+/// Controller
+    use App\Article;
+
+    public function one_to_many_belongs()
+    {
+        $articles = Article :: all();
+        return view('one_to_many_belongs', compact('articles'));
+    }
+
+/// Model Article 
+    namespace App;
+
+    public function getPosterUsername() 
+    {        
+        return $this->belongsTo('App\User','user_id'); 
+        
+        // daca metoda nu este user (in acest caz getPosterUsername) se parseaza si cheia externa,
+        // pentru ca Laravel nu construieste cheia externa utilizand numele metodei in acest caz
+        
+    }
+/// View
+     @foreach ($articles as $article)
+         <h1>{{$article->title}} posted by <small>{{$article->getPosterUsername->name}}</small></h1>
+                <p>{{$article->body}}</p>
+     @endforeach
+
+One to many
+
+Se foloseste ca sa afisezi articolele corespunzatoare user-ului printr-un parametru trecut prin url. In acest caz se scrie in modelul User
+metoda articles().
+
+/// routes
+Route::get('/one_to_many_has_many/{username}', 'TestController@one_to_many_has_many');
+
+/// Controller
+    use App\Article;
+
+    public function one_to_many_has_many($username)
+    {
+        $user =  User :: where('name',$username)->first();
+        return view('one_to_many_has_many', compact('user'));
+    }
+
+
+/// Model
+
+    public function articles() {
+        return $this->hasMany('App\Article');
+    } 
+
+/// View 
+
+    @foreach ($user->articles as $article)
+              <h1>{{$article->title}}</h1>
+                <p>{{$article->body}}</p>
+    @endforeach
+
+
+SQL injection este prevenita deoarece ORM foloseste prepared statments
+CSRF token este generat si verificat default
+XSS
+
+Route::post('/task', function (Request $request) {
+   //
+   $validator = Validator::make($request->all(), [
+       // Do not allow any shady characters
+       'names' => 'required|max:255|regex:[A-Za-z1-9 ]',
+   ]);
+   if ($validator->fails()) {
+       return redirect('/')
+       ->withInput()
+       ->withErrors($validator);
+   }
+   $task = new Task;
+   $task->names = $request->names;
+   $task->save();
+   return redirect('/');
+});
+
+Route::post('/task', function (Request $request) {
+       $cleaned_name = strip_tags($request->input('name'));
+       $task = new Task;
+       $task->names = $cleaned_name;
+       $task->save();
+   return redirect('/');
+});
+
+Route::resource('/categories', 'CategoriesController');
+
+resource se foloseste pentru CRUD
+
+Repository Pattern
+
+se observa ca laravel executa injection automat, daca clasa PaymentGateway nu are constructor cu parametru; 
+daca clasa are constructor se poate adauga la AppServiceProvider 
+
+public function register()
+{
+    $this->app->singleton(PaymentGateway::class, function ($app) {
+        return new PaymentGateway('usd');
+    });
+}
+
+public function store(PaymentGateway $paymentGateway) {
+    $paymentGateway->charge(250);
+}
+
+
+SELECT `author`.*, `book_author`.`book_id` AS `pivot_book_id`, `book_author`.`author_id` AS `pivot_author_id` FROM `author` 
+INNER JOIN `book_author` ON `author`.`id` = `book_author`.`author_id` 
+WHERE `book_author`.`book_id` IN (1, 3, 4, 5, 6, 7, 8, 9, 10, 11)
+
+SELECT book_author.book_id, book_author.author_id, books.name AS book_name, author.name AS author_name FROM book_author 
+INNER JOIN books ON book_author.book_id = books.id
+INNER JOIN author ON book_author.author_id = author.id
+
+SELECT book_author.book_id, book_author.author_id, books.name AS book_name, GROUP_CONCAT(author.name SEPARATOR ', ') AS author_name FROM book_author 
+INNER JOIN books ON book_author.book_id = books.id
+INNER JOIN author ON book_author.author_id = author.id
+GROUP BY book_name

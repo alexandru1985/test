@@ -1,10 +1,21 @@
-$_GET trimite parametrii in url, iar $_POST trimite parametrii utilizand metoda HTTPS POST, care furnizeaza Security Socket Layer.
+Exista 2 moduri prin care clientul browser poate trimite informatii catre server
+$_GET
+$_POST
+$_GET trimite parametrii in url (maxim 1024 de caractere), iar $_POST trimite parametrii utilizand protocolul HTTPS,
+care furnizeaza Security Socket Layer.
+Parametrii $_GET se pot vedea utilizand calea Inspect/Network/Doc/Headers/Query String Parameters
+Parametrii $_POST se pot vedea utilizand calea Inspect/Network/Doc/Headers/Form-Data
+Daca se utiliseaza AJAX, calea este Inspect/Network/XHR/Headers/
+$_POST dupa ce trimite o noua intrare catre server rezulta o noua resursa (resource)
+$_POST poate trimite fisiere binare
+$_PUT va face replace la o resursa
 $_SESSION este o variabila superglobala a carei valoare poate fi citita pe orice pagina care contine session_start(). Sessiunea se distruge
 utilizand session_destroy().
-$_FILES memoreaza informatii despre fisierele upload-ate.
+$_FILES memoreaza informatii despre fisierele uploadate.
 unset sterge o variabila, iar unlink un fisier
-Intr-o clasa sunt definite proprietatile si metodele unei clase ( se instantiaza folosind operatorul new). Printr-un obiect se pot 
-apela proprietatile si metodele acelei clase.
+deployment(implementare) se face utilizand composer pentru a instala in vendor noile dependinte
+Intr-o clasa sunt definite proprietatile si metodele unei clase ( se instantiaza folosind operatorul new). 
+Printr-un obiect se pot apela proprietatile si metodele acelei clase.
 Metoda magica __construct() ruleaza atunci cand un obiect este instantiat. De asemenea, parametrii trimisi atunci cand se 
 instantiaza obiectul ajung in constructor.
 Metode de tip getters si setters.
@@ -12,9 +23,12 @@ O proprietate sau o metoda se apeleaza cu $this.
 Diferenta dintre modificatorii de acces este ca doar atributele public si protected se pot mosteni, nu si private, iar atributele protected 
 si private nu pot fi accesate din afara clasei; modificatorii de acces sunt obligatorii pentru proprietati sau atribute,
 iar pentru metode modificatorul implicit este public.
+MOdificatorul private este accesibil doar in interiorul clasei
 Diferenta dintre o clasa abstracta si o interfata (notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta poti sa scrii cod;
 daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta; poti mosteni o singura clasa, insa poti
 implementa mai multe interfete.
+Polymorphismul reprezinta situatia in care mai multe clase implementeaza aceeasi interfata.
+Designul pattern builder se foloseste atunci cand obiecte se creaza obiecte complexe
 
 class Login {
 
@@ -26,9 +40,8 @@ class Login {
 
 class Foo
 {
-   // aceasta metoda nu mai poate fi suprascrisa si poate avea ca modificator de acces doar public;
 
-   final public function printItem($string)
+    public function printItem($string)
     {
         echo 'Foo: ' . $string . PHP_EOL;
     }
@@ -129,7 +142,8 @@ public function __construct(string $message) {
 echo $message;
 }
 };
-
+intr-o clasa abstracta poti scri cod, si intr-o interfata nu;
+si cel mai important, poti implementa mai multe interfete insa poti sa extinzi o singura clasa.
 
 <?php
 trait Singleton
@@ -151,12 +165,16 @@ var_dump($object instanceof UsingTraitExample); // true
 
 Type hinting de la PHP 5.6 poti seta ce tip sa fie parametrul unei metode int, string, array. Pentru notiunea de dependency injection
 se asteapta ca paramentru un obiect.
-XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(). De asemeneaa SQL Injection se poate preveni
-utilizand mysqli_real_escape_string() pentru parametrul $_POST.
+XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(), htmlentities() si strip_tags(). Pentru escape output se mai poate folosi
+filter_var($string, FILTER_SANITIZE_STRING)
+De asemeneaa SQL Injection se poate preveni utilizand mysqli_real_escape_string() pentru parametrul $_POST sau prepared statements.
+Email Injection,
+$sender = $_POST['sender']; 
+filter_var($sender, FILTER_VALIDATE_EMAIL);
 CSRF (Cross Site Request Forgery - se citeste forgeri) - doar user-ul curent poate face submit la un formular, iar datele sa fie procesate. Se genereaza un token care se tine pe o 
 sesiune, iar atunci cand token-ul este valabil(adica este cel stocat pe sesiune) se trimite formularul si se executa o actiune spre exemplu.
 Daca instantiezi mai multe obiecte cu referire la design pattern-ul singleton si aplici var_dump o sa iti arate acelasi obiect.
-Incapsularea inseamna apelarea unei proprietati private din afara clasei, care este setata mai intai printr-o metoda de tip setters publica.
+Incapsularea inseamna apelarea unei proprietati private sau protected din afara clasei, care este setata mai intai printr-o metoda de tip setters publica.
 Un trait nu se poate instantia. Printr-un trait se mostenesc metodele acestuia intr-o clasa ( se adauga use Trait in interiorul clasei). Acesta este util deoarece nu se pot mosteni mai multe clase in PHP.
 
 //create function with an exception
@@ -179,20 +197,226 @@ catch(Exception $e) {
   echo 'Message: ' .$e->getMessage();
 }
 
-Message: Value must be 1 or below 
+Message: Value must be 1 or below
+<?php
+function myFunc(?MyObject $myObj)
+{
+echo "hello world";
+}
+// this is allowed
+myFunc(null);
+// this produces a fatal error: Too few arguments
+myFunc();
 
-Un index este folosit pentru a se cauta mai repede intr-o tabela; CREATE INDEX, ALTER TABLE ... ADD INDEX, ALTER TABLE ... DROP INDEX El se foloseste pentru campurile care sunt utilizate in clauza WHERE. 
-Dezavantajele unui index sunt ca el incarca memoria; operatiile de INSERT INTO, UPDATE si DELETE se executa mai greu deoarece se
-actualizeaza si tabela de index.
-CREATE TABLE, ALTER TABLE
-INNER JOIN va afisa randurile care corespund in ambele tabele
-LEFT JOIN va afisa toate randurile din tabela din stanga, iar atunci cand nu gaseste randuri in tabela din dreapta va afisa NULL; 
-RIGHT JOIN
-Functii agregate SQL: COUNT, SUM, MIN, MAX. Clauza WHERE nu permite utilizarea functiilor agregate de aceea se foloseste HAVING care
-cauta in rezultat.
-COUNT sau SUM + GROUP BY in interogare
-Daca o tabela se afla in situatia many to many este indicat sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii 
-one to many.
-ADD CONSTRAINT poate fi ON DELETE sau ON UPDATE, RELATION VIEW
-PRIMARY KEY nu permite valori negative sau null, in timp ce UNIQUE KEY permite null.
+
+Function
+Returns
+func_num_args()
+How many arguments were passed to the function
+func_get_arg($num)
+Parameter number $num (zero based)
+func_get_args()
+All parameters passed to the function as an array
+Here is an example showing how a function can accept any number of parameters of
+any sort, and how you can access them:
+<?php
+function myFunc() {
+foreach(func_get_args() as $arg => $value) {
+echo "$arg is $value" . PHP_EOL;
+}
+}
+myFunc('variable', 3, 'parameters');
+/*
+0 is variable
+1 is 3
+2 is parameters
+*/
+
+You can also specify what variable type the function will return.
+function getFullName(string $firstName, string $lastName): string {
+return 123;
+}
+
+Return Void
+If the function is going to return null, you can specify that it will return "void" (PHP 7.1+),
+as in this example:
+<?php
+function sayHello(): void {
+echo "Hello World";
+}
+// Hello World
+sayHello();
+¦¦Caution
+Trying to specify that it will return
+will result in a fatal error.
+
+
+function A(): void {
+   // valid
+}
+
+function B(): void {
+   return; // valid
+}
+
+function C(): void {
+   return null; // invalid
+}
+
+function D(): void {
+   return 1; // invalid
+}
+
+$a = "some string";
+// early binding (default)
+$b = function() use ($a) {
+echo $a;
+};
+$a = "Hello World";
+// some string
+$b();
+
+A closure in PHP is an anonymous function that encapsulates variables so they can
+be used once their original references are out of scope. Another way of putting this is to say
+that the anonymous function “closes over” variables that are in the scope it was defined in.
+In practical syntax in PHP, we define a closure like this:
+<?php
+$string = "Hello World!";
+$closure = function() use ($string) {
+echo $string;
+};
+$closure();
+That looks nearly identical to a lambda, but notice the use ($string) syntax that
+occurs just before the code block begins.
+
+ 
+//Our recursive function.
+ 
+function recursive($num){
+    //Print out the number.
+    echo $num, '<br>';
+    //If the number is less or equal to 50.
+    if($num < 50){
+        //Call the function again. Increment number by one.
+        return recursive($num + 1);
+    }
+}
+ 
+//Set our start number to 1.
+$startNum = 1;
+ 
+//Call our recursive function.
+recursive($startNum);
+
+
+<?php
+class A {
+    public static function who() {
+        echo __CLASS__;
+    }
+    public static function test() {
+        static::who(); // Here comes Late Static Bindings
+    }
+}
+
+class B extends A {
+    public static function who() {
+        echo __CLASS__;
+    }
+}
+
+B::test();
+?>
+
+Factory
+
+Factory method is a creational design pattern which solves the problem
+of creating product objects without specifying their concrete classes.
+
+Factory Method defines a method, which should be used for
+creating objects instead of direct constructor call (new operator). 
+Subclasses can override this method to change the class of objects that will be created.
+
+Builder
+
+Builder is a creational design pattern that lets you construct complex objects step by step.
+The pattern allows you to produce different types and representations of an object using the same construction code.
+
+Builder is an interface that build parts of a complex object.
+
+Sometimes, if the builder has a better knowledge of what it builds, this interface could be an abstract class with default methods (aka adapter).
+
+Adapter
+
+Adapter is a structural design pattern that allows objects with incompatible interfaces to collaborate.
+
+Facade
+
+Facade is a structural design pattern that provides a simplified (but limited) interface 
+to a complex system of classes, library or framework.
+
+Strategy
+
+Strategy is a behavioral design pattern that turns a set of behaviors
+into objects and makes them interchangeable inside original context object.
+
+
+Load Blancing Features
+
+Distribuie traficul pe mai multe servere
+Requests sunt redirectate doar catre serverele care sunt disponibile
+Se pot adauga sau sterge servere din retea in functie de necesitate
+
+Load Balancing Algoritms
+
+Daca o cerere a fost trimisa catre serverul 1, apoi urmatoarea cerere va fi trimisa catre serverul 2 
+Cererea poate fi trimisa catre cel putin un server din retea
+Cererea poate fi trimisa catre server in functie de IP-ul clientului 
+
+Sticky Session
+
+SessionId trebuie tinuta in cache. Se poate utiliza Redis.
+
+HTTP response status codes
+200 OK
+The request has succeeded.
+201 Created
+The request has succeeded and a new resource has been created as a result. This is typically the response sent after POST requests, or some PUT requests.
+400 Bad Request 
+The server could not understand the request due to invalid syntax.
+401 Unauthorized
+Although the HTTP standard specifies "unauthorized", semantically this response means "unauthenticated". That is, the client must authenticate itself to get the requested response.
+403 Forbidden
+The client does not have access rights to the content; that is, it is unauthorized, so the server is refusing to give the requested resource. Unlike 401, the client's identity is known to the server.
+404 Not Found
+The server can not find the requested resource. In the browser, this means the URL is not recognized. 
+422 Unprocessable Entity (WebDAV)
+The request was well-formed but was unable to be followed due to semantic errors.
+500 Internal Server Error
+The server has encountered a situation it doesn't know how to handle.
+502 Bad Gateway
+This error response means that the server, while working as a gateway to get a response needed to handle the request, got an invalid response.
+503 Service Unavailable
+The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
+
+
+atribuirea prin referinta
+variabila $var2 se va referi la zona de memorie alocata $var1; orice modificare a $var2 se va propaga si pentru $var1
+
+$var1 = 123;
+$var2 =&$var1;
+$var2 = 456;
+
+echo $var1;
+
+// 456
+
+
+SOLID 
+
+Task-urile cu privire la React erau externalizate
+
+o variabila de tipul resource se refera la resursele externe; spre exemplu o variabila care contine functia fopen() 
+pentru lucrul cu fisiere sau functia mysqli_connect()
+
 

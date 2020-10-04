@@ -1,0 +1,10 @@
+{
+    "autoload": {
+        "psr-4": {
+            "": "src/",
+            "facade\\": "design_patterns/",
+            "builder\\": "design_patterns/",
+            "factory\\": "design_patterns/"
+        }
+    }
+}
