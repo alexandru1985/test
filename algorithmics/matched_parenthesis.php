@@ -27,9 +27,9 @@ function hasMatchedParenthesis(string $string) {
 
     if (count($stack) == 0) {
         return 1;
-    } else {
-        return 0;
-    }
+    } 
+    
+    return 0;
 }
 
 $string = "((()(())()))";
