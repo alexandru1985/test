@@ -23,7 +23,7 @@ O proprietate sau o metoda se apeleaza cu $this.
 Diferenta dintre modificatorii de acces este ca doar atributele public si protected se pot mosteni, nu si private, iar atributele protected 
 si private nu pot fi accesate din afara clasei; modificatorii de acces sunt obligatorii pentru proprietati sau atribute,
 iar pentru metode modificatorul implicit este public.
-MOdificatorul private este accesibil doar in interiorul clasei
+Modificatorul private este accesibil doar in interiorul clasei
 Diferenta dintre o clasa abstracta si o interfata (notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta poti sa scrii cod;
 daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta; poti mosteni o singura clasa, insa poti
 implementa mai multe interfete.
@@ -414,9 +414,20 @@ echo $var1;
 
 SOLID 
 
-Task-urile cu privire la React erau externalizate
-
 o variabila de tipul resource se refera la resursele externe; spre exemplu o variabila care contine functia fopen() 
 pentru lucrul cu fisiere sau functia mysqli_connect()
+
+Namespaces are qualifiers that solve two different problems:
+
+    They allow for better organization by grouping classes that work together 
+    to perform a task
+    They allow the same name to be used for more than one class
+
+For example, you may have a set of classes which describe an HTML table, such as Table, 
+Row and Cell while also having another set of classes to describe furniture, such as Table,
+Chair and Bed. Namespaces can be used to organize the classes into two different groups 
+while also preventing the two classes Table and Table from being mixed up.
+
+declare(strict_types=1) 
 
 
