@@ -10,6 +10,7 @@ class Thesaurus {
 
     public function getSynonyms(string $word): string {
         $array = array("word" => "", "synonyms" => array());
+
         foreach ($this->thesaurus as $key => $synonyms) {
             $array['word'] = $word;
             if ($key == $word) {
@@ -18,20 +19,20 @@ class Thesaurus {
                 }
             }
         }
+        
         return json_encode($array);
     }
 
 }
 
 $thesaurus = new Thesaurus(
-        [
-    "buy" => array("purchase"),
-    "big" => array("great", "large")
-        ]
+    [
+        "buy" => array("purchase"),
+        "big" => array("great", "large")
+    ]
 );
 
 echo $thesaurus->getSynonyms("big");
 echo "\n";
 echo $thesaurus->getSynonyms("agelast");
 
-$dates = changeDateFormat(["2010/03/30", "15/12/2016", "11-15-2012", "20130720"]);

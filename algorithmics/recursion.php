@@ -19,8 +19,11 @@ function array_flatten($array) {
   } 
   return $result; 
 }
+
 $res = array_flatten($array);
+
 echo '<pre>';
 var_dump($res);
 echo '</pre>';
+
 die();

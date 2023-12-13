@@ -2,11 +2,11 @@
 
 class CategoryTree {
 
-    public $category = array();
-    public $parent = array();
+    public $category = [];
+    public $parent = [];
 
-    public function addCategory(string $category, string $parent = null): void {
-        
+    public function addCategory(string $category, string $parent = null): void 
+    {
         if ($parent == null) {
             $parent = "null";
         }
@@ -15,17 +15,19 @@ class CategoryTree {
         $this->parent[] = $parent;
     }
 
-    public function getChildren(string $parent): array {
-        $result = array();
+    public function getChildren(string $parent): array 
+    {
+        $result = [];
         $arr = array_combine($this->category, $this->parent);
+        
         foreach ($arr as $key => $value) {
             if ($value == $parent) {
                 $result[] = $key;
             }
         }
+
         return $result;
     }
-
 }
 
 $c = new CategoryTree;

@@ -3,10 +3,12 @@
 class LeagueTable
 {   
     public $players;
+
     public function __construct(array $players)
     {
         $this->standings = [];
         $this->players = $players; 
+
         foreach($players as $index => $p) {
             $this->standings[$p] = [
                 'index'        => $index,
@@ -37,6 +39,7 @@ $table->recordResult('Mike', 2);
 $table->recordResult('Mike', 3);
 $table->recordResult('Arnold', 5);
 $table->recordResult('Chris', 3);
+
 echo $table->playerRank(1);
 echo "<pre>";
 var_dump($table->standings);
