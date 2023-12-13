@@ -1,28 +1,28 @@
 <?php
 
-class MaxNumbers {
-
-public function getMaxNumberOfEachClass(array $numbers): array 
+class MaxNumbers 
 {
-    $classesWithAllNumbers = [];
-    $maxNumberOfEachClass = [];
-    $maxNumberName = 'max_number';
-    
-        for ($i = 0; $i < count($numbers); $i++) {
-            $firstDigitOfClass = $this->getFirstDigitOfClass($numbers[$i]);
-            $addDigitsToClass = $this->addDigitsToClass($numbers[$i]);
+    public function getMaxNumberOfEachClass(array $numbers): array 
+    {
+        $classesWithAllNumbers = [];
+        $maxNumberOfEachClass = [];
+        $maxNumberName = 'max_number';
+        
+            for ($i = 0; $i < count($numbers); $i++) {
+                $firstDigitOfClass = $this->getFirstDigitOfClass($numbers[$i]);
+                $addDigitsToClass = $this->addDigitsToClass($numbers[$i]);
 
-            // Add all numbers to each class 
-            $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][] = $numbers[$i];
+                // Add all numbers to each class 
+                $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][] = $numbers[$i];
 
-            // Add key max_number and its value to each class 
-            $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName] = 
-                max($classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass]);
-            
-            // Add max_number as single value to each class     
-            $maxNumberOfEachClass[$firstDigitOfClass . $addDigitsToClass] = 
-                $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName]; 
-        }
+                // Add key max_number and its value to each class 
+                $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName] = 
+                    max($classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass]);
+                
+                // Add max_number as single value to each class     
+                $maxNumberOfEachClass[$firstDigitOfClass . $addDigitsToClass] = 
+                    $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName]; 
+            }
 
         return array_values($maxNumberOfEachClass);
     }
