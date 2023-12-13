@@ -34,15 +34,17 @@
 //         each element of array A is an integer within the range [1..1,000,000,000];
 //         all but one of the values in A occur an even number of times.
 
-$arr = [ 0 => 9, 1 => 3, 2 => 9, 3 => 3, 4 => 9, 5 => 7 , 6 => 9];
+$arr = [0 => 9, 1 => 3, 2 => 9, 3 => 3, 4 => 9, 5 => 7 , 6 => 9];
 
 function solution($arr) {
     $countValues = array_count_values($arr);
+
     foreach ($countValues as $key => $value) {
         if ($value % 2 > 0 ) {
             $int = $key;
         }
     }
+
     return $int;
 }
 

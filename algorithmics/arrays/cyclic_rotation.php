@@ -70,9 +70,9 @@ function rotation($arr, $k) {
  
 }
 
-// echo "<pre>";
-// var_dump(rotation($arr,$k)); 
-// echo "<pre/>";
+echo "<pre>";
+var_dump(rotation($arr,$k)); 
+echo "<pre/>";
 
 
 $arr = [3, 8, 9, 7, 6];
