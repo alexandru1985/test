@@ -10,18 +10,18 @@ class MaxNumbers
         
             for ($i = 0; $i < count($numbers); $i++) {
                 $firstDigitOfClass = $this->getFirstDigitOfClass($numbers[$i]);
-                $addDigitsToClass = $this->addDigitsToClass($numbers[$i]);
+                $joinDigitsToClass = $this->joinDigitsToClass($numbers[$i]);
 
                 // Add all numbers to each class 
-                $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][] = $numbers[$i];
+                $classesWithAllNumbers[$firstDigitOfClass . $joinDigitsToClass][] = $numbers[$i];
 
-                // Add key max_number and its value to each class 
-                $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName] = 
-                    max($classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass]);
+                // Add max_number key and its value to each class 
+                $classesWithAllNumbers[$firstDigitOfClass . $joinDigitsToClass][$maxNumberName] = 
+                    max($classesWithAllNumbers[$firstDigitOfClass . $joinDigitsToClass]);
                 
                 // Add max_number as single value to each class     
-                $maxNumberOfEachClass[$firstDigitOfClass . $addDigitsToClass] = 
-                    $classesWithAllNumbers[$firstDigitOfClass . $addDigitsToClass][$maxNumberName]; 
+                $maxNumberOfEachClass[$firstDigitOfClass . $joinDigitsToClass] = 
+                    $classesWithAllNumbers[$firstDigitOfClass . $joinDigitsToClass][$maxNumberName]; 
             }
 
         return array_values($maxNumberOfEachClass);
@@ -35,7 +35,7 @@ class MaxNumbers
         return $firstDigitOfClass;
     }
 
-    public function addDigitsToClass(int $number): string  
+    public function joinDigitsToClass(int $number): string  
     {
         $numberAsString = (string) $number; 
 
