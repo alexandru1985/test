@@ -18,8 +18,7 @@ functiilor agregate de aceea se foloseste HAVING care cauta in rezultat.
 sa se gaseasca o tabela de legatura astfel incat sa existe 2 relatii one to many.
     ADD CONSTRAINT poate fi ON DELETE sau ON UPDATE, RELATION VIEW
     PRIMARY KEY nu permite valori negative sau null, in timp ce UNIQUE KEY permite null.
-    Diferenta dintre WHERE si HAVING este ca 
-WHERE nu se poate folosi atunci cand se cauta in rezultat
+    Diferenta dintre WHERE si HAVING este ca WHERE nu se poate folosi atunci cand se cauta in rezultat
 (atunci cand se folosesc functiile agregate de SQL: COUNT, SUM, MIN, MAX )
 
 SELECT COUNT(CustomerID), Country
@@ -97,7 +96,7 @@ WHERE City LIKE 'Char%'
 not '%Char%'
 Use WHERE instead of HAVING
 
-HAVING se foloseste intotdeauna cu GROUP BY
+HAVING se foloseste de cele mai multe ori cu GROUP BY
 
 The UNION operator is used to combine the result-set of two or more SELECT statements.
 
