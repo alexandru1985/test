@@ -188,7 +188,7 @@ se trimite formularul si se executa o actiune spre exemplu.
     Incapsularea inseamna apelarea unei proprietati private sau protected din afara clasei,
 care este setata mai intai printr-o metoda de tip setters publica.
     Un trait nu se poate instantia. Printr-un trait se mostenesc metodele acestuia
-intr-o clasa ( e adauga use Trait in interiorul clasei). 
+intr-o clasa (se adauga use Trait in interiorul clasei). 
 Acesta este util deoarece nu se pot mosteni mai multe clase in PHP.
 
 //create function with an exception
