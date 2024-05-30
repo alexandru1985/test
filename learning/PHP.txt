@@ -1,58 +1,61 @@
-Exista 2 moduri prin care clientul browser poate trimite informatii catre server
-$_GET
-$_POST
-$_GET trimite parametrii in url (maxim 1024 de caractere), iar $_POST trimite parametrii utilizand protocolul HTTPS,
+    HTTPS (HyperText Transfer Protocol Secure) reprezintă protocolul 
+HTTP încapsulat într-un flux SSL/TLS care criptează
+datele transmise de la un browser web la un server web, 
+cu scopul de a se oferi o identificare criptată și sigură la server.
+    Exista 2 moduri prin care clientul browser poate trimite informatii catre server:
+se utilizeaza $_GET si $_POST.
+    $_GET afiseaza parametrii in url (maxim 1024 de caractere), 
+iar $_POST trimite parametrii utilizand protocolul HTTPS,
 care furnizeaza Security Socket Layer.
-Parametrii $_GET se pot vedea utilizand calea Inspect/Network/Doc/Headers/Query String Parameters
-Parametrii $_POST se pot vedea utilizand calea Inspect/Network/Doc/Headers/Form-Data
-Daca se utiliseaza AJAX, calea este Inspect/Network/XHR/Headers/
-$_POST dupa ce trimite o noua intrare catre server rezulta o noua resursa (resource)
-$_POST poate trimite fisiere binare
-$_PUT va face replace la o resursa
-$_SESSION este o variabila superglobala a carei valoare poate fi citita pe orice pagina care contine session_start(). Sessiunea se distruge
+    Parametrii $_GET si $_POST se pot vedea utilizand calea Inspect/Network/Payload.
+    $_POST dupa ce trimite o noua intrare catre server rezulta o noua resursa (resource).
+    $_POST poate trimite fisiere binare.
+    $_PUT va face replace la o resursa.
+    $_SESSION este o variabila superglobala a carei valoare 
+poate fi citita pe orice pagina care contine session_start(). Sessiunea se distruge
 utilizand session_destroy().
-$_FILES memoreaza informatii despre fisierele uploadate.
-unset sterge o variabila, iar unlink un fisier
-deployment(implementare) se face utilizand composer pentru a instala in vendor noile dependinte
-Intr-o clasa sunt definite proprietatile si metodele unei clase ( se instantiaza folosind operatorul new). 
-Printr-un obiect se pot apela proprietatile si metodele acelei clase.
-Metoda magica __construct() ruleaza atunci cand un obiect este instantiat. De asemenea, parametrii trimisi atunci cand se 
-instantiaza obiectul ajung in constructor.
-Metode de tip getters si setters.
-O proprietate sau o metoda se apeleaza cu $this.
-Diferenta dintre modificatorii de acces este ca doar atributele public si protected se pot mosteni, nu si private, iar atributele protected 
-si private nu pot fi accesate din afara clasei; modificatorii de acces sunt obligatorii pentru proprietati sau atribute,
-iar pentru metode modificatorul implicit este public.
-Modificatorul private este accesibil doar in interiorul clasei
-Diferenta dintre o clasa abstracta si o interfata (notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta poti sa scrii cod;
-daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta; poti mosteni o singura clasa, insa poti
-implementa mai multe interfete.
-Polymorphismul reprezinta situatia in care mai multe clase implementeaza aceeasi interfata.
-Designul pattern builder se foloseste atunci cand obiecte se creaza obiecte complexe
+    $_FILES memoreaza informatii despre fisierele uploadate.
+    unset sterge o variabila, iar unlink un fisier.
+Intr-o clasa sunt definite proprietatile si metodele unei clase 
+(se instantiaza folosind operatorul new). 
+    Printr-un obiect se pot apela proprietatile si metodele acelei clase.
+    Metoda magica __construct() ruleaza atunci cand un obiect este instantiat. 
+De asemenea, parametrii trimisi atunci cand se instantiaza obiectul 
+ajung in constructor.
+    O proprietate sau o metoda se apeleaza, in interiorul clasei, cu $this 
+sau cu self daca acestea sunt statice.
+    Diferenta dintre modificatorii de acces este ca doar atributele
+public si protected se pot mosteni, nu si private, iar atributele protected 
+si private nu pot fi accesate din afara clasei; modificatorii de acces sunt 
+obligatorii pentru proprietati sau atribute, iar pentru metode modificatorul 
+implicit este public.
+    Modificatorul private este accesibil doar in interiorul clasei.
+    Diferenta dintre o clasa abstracta si o interfata 
+(notata interface si aplicata utilizand implements) este ca intr-o clasa abstracta 
+poti sa scrii cod; daca o clasa contine o metoda abstracta aceasta trebuie declarata ca abstracta. 
+    Se poate mosteni o singura clasa, insa se pot implementa mai multe interfete.
+    Polymorphismul reprezinta situatia in care mai multe clase implementeaza aceeasi interfata.
+    O clasa abstracta nu se poate instantia. Trebuie definite doar metodele 
+setate ca abstract in clasa in care sunt mostenite.
 
 class Login {
 
     // eroare nu i se poate atribui unei proprietati o functie
     private $lastLogin = time();
-
-
 }
 
 class Foo
 {
-
     public function printItem($string)
     {
         echo 'Foo: ' . $string . PHP_EOL;
     }
-    
-
 }
 
 class Bar extends Foo
 { 
-
-    // o metoda care se suprascrie trebuie sa aiba acelasi numar de argumente ca si metoda initiala
+    // o metoda care se suprascrie trebuie sa aiba acelasi numar de argumente ca si metoda initiala,
+    // insa acest lucru poate fi evitat daca argumentul metodei suprascrise este setat ca null
 
     public function printItem($string)
     {
@@ -71,7 +74,6 @@ class A extends B
 
 final class Employee {}
 
-
 <?php
 interface PaymentProvider
 {
@@ -81,7 +83,9 @@ interface PaymentProvider
     public function contactGateway(array $messageParameters);
     public function notify(string $email);
 }
-A class would be declared as implementing it like this:
+
+/// A class would be declared as implementing it like this:
+
 <?php
 class CreditCard implements PaymentProvider
 {
@@ -120,30 +124,33 @@ interface c extends a, b
 <?php
 abstract class Paintings
 {
-// nu poate fi private
-abstract protected function paintingA();
-protected function paintingB() {
-echo " I have an implementation so this is not an abstract method ";
-}
-public function __construct() {
-echo "I cannot be constructed!";
-}
+    // nu poate fi private
+    abstract protected function paintingA();
+    protected function paintingB() 
+    {
+        echo " Ihave an implementation so this is not an abstract method";
+    }
+    public function __construct()
+    {
+        echo "I cannot be constructed!";
+    }
 }
 
 class Foo extends Paintings {
-public function paintingA() { echo "test"; }
+    public function paintingA() 
+    { 
+        echo "test"; 
+    }
 }
-
-O clasa abstracta nu se poate instantia. Trebuie definite doar metodele setate ca abstract in clasa in care sunt mostenite.
 
 // Clasa anonima
-$object = new class('argument') {
-public function __construct(string $message) {
-echo $message;
-}
+$object = new class('argument') 
+{
+    public function __construct(string $message) 
+    {
+        echo $message;
+    }
 };
-intr-o clasa abstracta poti scri cod, si intr-o interfata nu;
-si cel mai important, poti implementa mai multe interfete insa poti sa extinzi o singura clasa.
 
 <?php
 trait Singleton
@@ -155,6 +162,7 @@ trait Singleton
 }
     return self::$instance;
 }
+
 }
 class UsingTraitExample
 {
@@ -163,19 +171,25 @@ class UsingTraitExample
 $object = UsingTraitExample::getInstance();
 var_dump($object instanceof UsingTraitExample); // true
 
-Type hinting de la PHP 5.6 poti seta ce tip sa fie parametrul unei metode int, string, array. Pentru notiunea de dependency injection
-se asteapta ca paramentru un obiect.
-XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(), htmlentities() si strip_tags(). Pentru escape output se mai poate folosi
-filter_var($string, FILTER_SANITIZE_STRING)
-De asemeneaa SQL Injection se poate preveni utilizand mysqli_real_escape_string() pentru parametrul $_POST sau prepared statements.
-Email Injection,
-$sender = $_POST['sender']; 
-filter_var($sender, FILTER_VALIDATE_EMAIL);
-CSRF (Cross Site Request Forgery - se citeste forgeri) - doar user-ul curent poate face submit la un formular, iar datele sa fie procesate. Se genereaza un token care se tine pe o 
-sesiune, iar atunci cand token-ul este valabil(adica este cel stocat pe sesiune) se trimite formularul si se executa o actiune spre exemplu.
-Daca instantiezi mai multe obiecte cu referire la design pattern-ul singleton si aplici var_dump o sa iti arate acelasi obiect.
-Incapsularea inseamna apelarea unei proprietati private sau protected din afara clasei, care este setata mai intai printr-o metoda de tip setters publica.
-Un trait nu se poate instantia. Printr-un trait se mostenesc metodele acestuia intr-o clasa ( se adauga use Trait in interiorul clasei). Acesta este util deoarece nu se pot mosteni mai multe clase in PHP.
+    Type hinting de la PHP 5.6 poti seta ce tip sa fie parametrul unei metode int, string, array, object. 
+    Pentru notiunea de dependency injection, se asteapta ca paramentru un obiect.
+    XSS (cross site scripting) se poate preveni utilizand pentru input htmlspecialchars(),
+htmlentities() si strip_tags(). Pentru escape output se mai poate folosi
+filter_var($string, FILTER_SANITIZE_STRING).
+    De asemeneaa, SQL Injection se poate preveni utilizand mysqli_real_escape_string()
+pentru parametrul $_POST sau prepared statements.
+    Email Injection,
+    $sender = $_POST['sender']; 
+    filter_var($sender, FILTER_VALIDATE_EMAIL);
+    CSRF (Cross Site Request Forgery - se citeste forgeri) - doar user-ul curent poate face 
+submit la un formular, iar datele sa fie procesate. Se genereaza un token care se tine pe o 
+sesiune, iar atunci cand token-ul este valabil(adica este cel stocat pe sesiune)
+se trimite formularul si se executa o actiune spre exemplu.
+    Incapsularea inseamna apelarea unei proprietati private sau protected din afara clasei,
+care este setata mai intai printr-o metoda de tip setters publica.
+    Un trait nu se poate instantia. Printr-un trait se mostenesc metodele acestuia
+intr-o clasa ( e adauga use Trait in interiorul clasei). 
+Acesta este util deoarece nu se pot mosteni mai multe clase in PHP.
 
 //create function with an exception
 function checkNum($number) {
@@ -233,8 +247,9 @@ myFunc('variable', 3, 'parameters');
 */
 
 You can also specify what variable type the function will return.
-function getFullName(string $firstName, string $lastName): string {
-return 123;
+function getFullName(string $firstName, string $lastName): string 
+{
+    return 123;
 }
 
 Return Void
@@ -276,20 +291,21 @@ $a = "Hello World";
 // some string
 $b();
 
-A closure in PHP is an anonymous function that encapsulates variables so they can
+    A closure in PHP is an anonymous function that encapsulates variables so they can
 be used once their original references are out of scope. Another way of putting this is to say
 that the anonymous function “closes over” variables that are in the scope it was defined in.
-In practical syntax in PHP, we define a closure like this:
+    In practical syntax in PHP, we define a closure like this:
+
 <?php
 $string = "Hello World!";
 $closure = function() use ($string) {
-echo $string;
+    echo $string;
 };
 $closure();
-That looks nearly identical to a lambda, but notice the use ($string) syntax that
+
+    That looks nearly identical to a lambda, but notice the use ($string) syntax that
 occurs just before the code block begins.
 
- 
 //Our recursive function.
  
 function recursive($num){
@@ -311,16 +327,19 @@ recursive($startNum);
 
 <?php
 class A {
-    public static function who() {
+    public static function who() 
+    {
         echo __CLASS__;
     }
-    public static function test() {
+    public static function test() 
+    {
         static::who(); // Here comes Late Static Bindings
     }
 }
 
 class B extends A {
-    public static function who() {
+    public static function who() 
+    {
         echo __CLASS__;
     }
 }
@@ -400,8 +419,9 @@ This error response means that the server, while working as a gateway to get a r
 The server is not ready to handle the request. Common causes are a server that is down for maintenance or that is overloaded.
 
 
-atribuirea prin referinta
-variabila $var2 se va referi la zona de memorie alocata $var1; orice modificare a $var2 se va propaga si pentru $var1
+Atribuirea prin referinta
+variabila $var2 se va referi la zona de memorie alocata $var1; 
+orice modificare a $var2 se va propaga si pentru $var1
 
 $var1 = 123;
 $var2 =&$var1;
@@ -411,11 +431,11 @@ echo $var1;
 
 // 456
 
-
 SOLID 
 
-o variabila de tipul resource se refera la resursele externe; spre exemplu o variabila care contine functia fopen() 
-pentru lucrul cu fisiere sau functia mysqli_connect()
+O variabila de tipul resource se refera la resursele externe; 
+spre exemplu o variabila care contine functia fopen() pentru lucrul cu fisiere 
+sau functia mysqli_connect()
 
 Namespaces are qualifiers that solve two different problems:
 

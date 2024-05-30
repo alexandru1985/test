@@ -1,2 +1,3 @@
 Props are for parent -> child
 You can use $emit for child -> parent
+Components, routes, input bindings, computed properties and hooks like created, mounted, updated.

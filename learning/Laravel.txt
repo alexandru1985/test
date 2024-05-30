@@ -148,3 +148,8 @@ SELECT book_author.book_id, book_author.author_id, books.name AS book_name, GROU
 INNER JOIN books ON book_author.book_id = books.id
 INNER JOIN author ON book_author.author_id = author.id
 GROUP BY book_name
+
+Eloquent Relationships, Service Provider, facades, routes, middlewares, gates; 
+Laravel Passport which is used to secure api requests.
+
+OAuth2, Bearer plus token se adauga pentru fiecare request la Authorization/Type
